@@ -31,6 +31,8 @@ model Restaurant {
   status Status @default(OFFLINE)
   hashed_password String @db.VarChar(60)
 
+  menu Menu[]
+
   @@map("restaurants")
 }
 
@@ -47,5 +49,7 @@ model Menu {
   name String @db.VarChar(64)
   price Float @db.DoublePrecision
 
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
+  restaurant_id Int
   @@map("menu")
 }

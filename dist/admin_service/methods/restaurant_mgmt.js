@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.del_restaurant = exports.add_restaurant = void 0;
+// 1. Add a restaurant
+// 2. Delete a restaurant
 const init_1 = __importDefault(require("../model/init"));
 function add_restaurant(name, city, password) {
     return __awaiter(this, void 0, void 0, function* () {

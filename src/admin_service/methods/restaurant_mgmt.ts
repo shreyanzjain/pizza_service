@@ -1,3 +1,5 @@
+// 1. Add a restaurant
+// 2. Delete a restaurant
 import prisma from "../model/init";
 
 async function add_restaurant(name: string, city: string, password: string) {
