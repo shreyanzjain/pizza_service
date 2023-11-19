@@ -16,7 +16,7 @@ enum Status {
 }
 
 model Customer {
-  id Int @id @unique
+  id Int @id @unique @default(autoincrement())
   name String @db.VarChar(64)
   city String @db.VarChar(64)
   hashed_password String @db.VarChar(60)
@@ -25,11 +25,19 @@ model Customer {
 }
 
 model Restaurant {
-  id Int @id @unique
+  id Int @id @unique @default(autoincrement())
   name String @db.VarChar(64)
   city String @db.VarChar(64)
   status Status @default(OFFLINE)
   hashed_password String @db.VarChar(60)
 
   @@map("restaurants")
+}
+
+model Admin {
+  id Int @id @unique @default(autoincrement())
+  name String @db.VarChar(64)
+  hashed_password String @db.VarChar(60)
+
+  @@map("admins")
 }
