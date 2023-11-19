@@ -8,6 +8,7 @@ async function view_restaurants(city: string, page?: number) {
     take: 10,
     skip: page ? page * 10 : 0, // if page is provided show results on page, else beginning
     select: {
+      id: true,
       name: true,
     },
     where: {

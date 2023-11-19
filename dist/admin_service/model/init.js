@@ -8,18 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const browse_1 = __importDefault(require("../methods/browse"));
-const express_1 = __importDefault(require("express"));
-const router = express_1.default.Router();
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const page = (typeof req.query.page === "string" ? parseInt(req.query.page) : null);
-    const restaurants = yield (0, browse_1.default)("goa", page);
-    console.log(restaurants);
-    return res.status(200).send(restaurants);
+const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
+process.on("SIGINT", () => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma.$disconnect();
+    process.exit(1);
 }));
-exports.default = router;
-//# sourceMappingURL=browse_routes.js.map
+process.on("SIGTERM", () => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma.$disconnect();
+    process.exit(1);
+}));
+exports.default = prisma;
+//# sourceMappingURL=init.js.map

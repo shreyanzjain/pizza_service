@@ -12,14 +12,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const browse_1 = __importDefault(require("../methods/browse"));
-const express_1 = __importDefault(require("express"));
-const router = express_1.default.Router();
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const page = (typeof req.query.page === "string" ? parseInt(req.query.page) : null);
-    const restaurants = yield (0, browse_1.default)("goa", page);
-    console.log(restaurants);
-    return res.status(200).send(restaurants);
-}));
-exports.default = router;
-//# sourceMappingURL=browse_routes.js.map
+// User browses the catalog with these methods
+// 1. view all restaurants ONLINE in his city
+// 2. View menu items, per restaurant
+const init_1 = __importDefault(require("../model/init"));
+function view_restaurants(city, page) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const restaurants = yield init_1.default.restaurant.findMany({
+            take: 10,
+            skip: page ? page * 10 : 0,
+            select: {
+                id: true,
+                name: true,
+            },
+            where: {
+                city: {
+                    equals: city,
+                    mode: 'insensitive'
+                },
+                status: "ONLINE",
+            },
+        });
+        return restaurants;
+    });
+}
+exports.default = view_restaurants;
+//# sourceMappingURL=browse.js.map

@@ -12,14 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const browse_1 = __importDefault(require("../methods/browse"));
+const restaurant_mgmt_1 = require("../methods/restaurant_mgmt");
 const express_1 = __importDefault(require("express"));
 const router = express_1.default.Router();
-router.get("/", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const page = (typeof req.query.page === "string" ? parseInt(req.query.page) : null);
-    const restaurants = yield (0, browse_1.default)("goa", page);
-    console.log(restaurants);
-    return res.status(200).send(restaurants);
+router.post("/add_restaurant", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const name = typeof (req.query.name) === "string" ? req.query.name : null;
+    const city = typeof (req.query.city) === "string" ? req.query.city : null;
+    const password = typeof (req.query.password) === "string" ? req.query.password : null;
+    console.log(name, city, password);
+    const response = yield (0, restaurant_mgmt_1.add_restaurant)(name, city, password);
+    res.status(parseInt(response[0])).send(response[1]);
+}));
+router.delete("/delete_restaurant", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = typeof (req.query.id) === "string" ? parseInt(req.query.id) : null;
+    const response = yield (0, restaurant_mgmt_1.del_restaurant)(id);
+    res.status(parseInt(response[0])).send(response[1]);
 }));
 exports.default = router;
-//# sourceMappingURL=browse_routes.js.map
+//# sourceMappingURL=mgmt_routes.js.map
