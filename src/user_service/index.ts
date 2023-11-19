@@ -12,5 +12,5 @@ app.get("/", (req, res) => {
 app.use("/browse", browse_routes);
 
 app.listen(port, () => {
-  console.log(`Listening on http://localhost:${port}`);
+  console.log(`User. Listening on http://localhost:${port}`);
 });

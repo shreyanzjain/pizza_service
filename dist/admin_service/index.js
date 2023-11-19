@@ -13,6 +13,6 @@ app.get("/", (req, res) => {
 });
 app.use('/admin', mgmt_routes_1.default);
 app.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
+    console.log(`Admin. Listening on http://localhost:${port}`);
 });
 //# sourceMappingURL=index.js.map
