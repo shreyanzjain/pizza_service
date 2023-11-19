@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "start": "concurrently \"tsc -w\" \"nodemon dist/index.js\" \"npm run start --prefix dist/admin_service\" \"npm run start --prefix dist/user_service\"",
+    "start": "concurrently \"tsc -w\" \"nodemon dist/index.js\" \"npm run start --prefix dist/admin_service\" \"npm run start --prefix dist/user_service\" \"npm run start --prefix dist/restaurant_service\"",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

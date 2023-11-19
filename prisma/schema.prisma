@@ -41,3 +41,11 @@ model Admin {
 
   @@map("admins")
 }
+
+model Menu {
+  id Int @id @unique @default(autoincrement())
+  name String @db.VarChar(64)
+  price Float @db.DoublePrecision
+
+  @@map("menu")
+}
