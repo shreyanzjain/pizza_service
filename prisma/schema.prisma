@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Status {
+  ONLINE
+  OFFLINE
+}
+
+model Customer {
+  id Int @id @unique
+  name String @db.VarChar(64)
+  city String @db.VarChar(64)
+  hashed_password String @db.VarChar(60)
+
+  @@map("customers") 
+}
+
+model Restaurant {
+  id Int @id @unique
+  name String @db.VarChar(64)
+  city String @db.VarChar(64)
+  status Status @default(OFFLINE)
+  hashed_password String @db.VarChar(60)
+
+  @@map("restaurants")
+}
