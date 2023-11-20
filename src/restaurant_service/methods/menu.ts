@@ -79,6 +79,7 @@ async function get_menu(restaurant_id: number) {
   if (restaurant) {
     const menu = await prisma.menu.findMany({
       select: {
+        id: true,
         name: true,
         price: true,
       },
