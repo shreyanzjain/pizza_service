@@ -29,6 +29,7 @@ model Restaurant {
   id Int @id @unique @default(autoincrement())
   name String @db.VarChar(64)
   city String @db.VarChar(64)
+  email String @db.VarChar(80) @unique
   status Status @default(OFFLINE)
   hashed_password String @db.VarChar(60)
 
