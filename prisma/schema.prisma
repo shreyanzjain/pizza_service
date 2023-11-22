@@ -15,6 +15,13 @@ enum Status {
   OFFLINE
 }
 
+enum OrderStatus {
+  PREPARING
+  PREPARED
+  DELIVERING
+  DELIVERED
+}
+
 model Customer {
   id Int @id @unique @default(autoincrement())
   name String @db.VarChar(64)
@@ -22,6 +29,7 @@ model Customer {
   email String @db.VarChar(80) @unique
   hashed_password String @db.VarChar(60)
 
+  cart Cart[]
   @@map("customers") 
 }
 
@@ -34,7 +42,7 @@ model Restaurant {
   hashed_password String @db.VarChar(60)
 
   menu Menu[]
-
+  cart Cart[]
   @@map("restaurants")
 }
 
@@ -53,5 +61,20 @@ model Menu {
 
   restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
   restaurant_id Int
+
+  cart Cart[]
   @@map("menu")
+}
+
+model Cart {
+  id Int @id @unique @default(autoincrement())
+  
+  menu Menu @relation(fields: [menu_id], references: [id], onDelete: Cascade)
+  menu_id Int
+
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
+  restaurant_id Int
+
+  customer Customer @relation(fields: [customer_id], references: [id], onDelete: Cascade)
+  customer_id Int
 }
