@@ -68,6 +68,7 @@ model Menu {
 
 model Cart {
   id Int @id @unique @default(autoincrement())
+  qty Int 
   
   menu Menu @relation(fields: [menu_id], references: [id], onDelete: Cascade)
   menu_id Int
