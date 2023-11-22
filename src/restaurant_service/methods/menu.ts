@@ -5,31 +5,27 @@
 import prisma from "../model/init";
 
 async function add_item(name: string, price: number, restaurant_id: number) {
-  const restaurant = await prisma.restaurant.findFirst({
-    where: {
-      id: restaurant_id,
+  const menu = await prisma.menu.create({
+    data: {
+      name: name,
+      price: price,
+      restaurant_id: restaurant_id,
     },
   });
 
-  if (restaurant) {
-    const menu = await prisma.menu.create({
-      data: {
-        name: name,
-        price: price,
-        restaurant_id: restaurant_id,
-      },
-    });
-
-    return ["200", `Item successfully added with id: ${menu.id}`];
-  } else {
-    return ["404", `Restaurant with id: ${restaurant_id} does not exist`];
-  }
+  return ["200", `Item successfully added with id: ${menu.id}`];
 }
 
-async function update_item(id: number, name?: string, price?: number) {
+async function update_item(
+  id: number,
+  restaurant_id: number,
+  name?: string,
+  price?: number
+) {
   const item = await prisma.menu.findFirst({
     where: {
       id: id,
+      restaurant_id: restaurant_id,
     },
   });
 
@@ -46,14 +42,15 @@ async function update_item(id: number, name?: string, price?: number) {
 
     return ["200", `Item successfully updated with id: ${menu.id}`];
   } else {
-    return ["404", `Item with id: ${id} does not exist`];
+    return ["404", `Item with id: ${id} does not exist on your restaurant.`];
   }
 }
 
-async function remove_item(id: number) {
+async function remove_item(id: number, restaurant_id: number) {
   const item = await prisma.menu.findFirst({
     where: {
       id: id,
+      restaurant_id: restaurant_id,
     },
   });
 
@@ -65,7 +62,7 @@ async function remove_item(id: number) {
     });
     return ["200", `Item successfully deleted with id: ${menu.id}`];
   } else {
-    return ["404", `Item with id: ${id} does not exist`];
+    return ["404", `Item with id: ${id} does not exist on your restaurant.`];
   }
 }
 
@@ -76,21 +73,17 @@ async function get_menu(restaurant_id: number) {
     },
   });
 
-  if (restaurant) {
-    const menu = await prisma.menu.findMany({
-      select: {
-        id: true,
-        name: true,
-        price: true,
-      },
-      where: {
-        restaurant_id: restaurant_id,
-      },
-    });
-    return ["200", menu];
-  } else {
-    return ["404", `Restaurant with id: ${restaurant_id} does not exist`];
-  }
+  const menu = await prisma.menu.findMany({
+    select: {
+      id: true,
+      name: true,
+      price: true,
+    },
+    where: {
+      restaurant_id: restaurant_id,
+    },
+  });
+  return ["200", menu];
 }
 
 export { add_item, get_menu, update_item, remove_item };
