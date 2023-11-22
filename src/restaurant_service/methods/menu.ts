@@ -67,12 +67,6 @@ async function remove_item(id: number, restaurant_id: number) {
 }
 
 async function get_menu(restaurant_id: number) {
-  const restaurant = await prisma.restaurant.findFirst({
-    where: {
-      id: restaurant_id,
-    },
-  });
-
   const menu = await prisma.menu.findMany({
     select: {
       id: true,

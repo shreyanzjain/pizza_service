@@ -2,12 +2,6 @@
 import prisma from "../model/init";
 
 async function set_status(status: number, restaurant_id: number) {
-  const restaurant = await prisma.restaurant.findFirst({
-    where: {
-      id: restaurant_id,
-    },
-  });
-
   const updated_restaurant = await prisma.restaurant.update({
     where: {
       id: restaurant_id,
