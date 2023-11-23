@@ -1,0 +1,291 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "pizza_service",
+    "dateExported": "2023-11-23T11:07:12.370Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "6a81d885-3c00-4af6-a98c-be99633163f4",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Add Item",
+            "url": "http://localhost:3003/menu/add_item",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-19T09:53:23.226Z",
+            "modified": "2023-11-22T06:03:57.720Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Margherita Small\",\n  \"price\": 200\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a680fb71-9a9a-41d1-bfff-671c0d4fea8f",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Get Menu",
+            "url": "http://localhost:3003/menu/get_menu",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-11-19T10:52:33.614Z",
+            "modified": "2023-11-22T05:48:46.875Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "bd810f8a-8cc5-4550-b3ac-9d979ac88df7",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Update Item",
+            "url": "http://localhost:3003/menu/update_item",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-11-19T10:54:58.870Z",
+            "modified": "2023-11-22T05:59:56.500Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 6,\n  \"price\": 1550\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "30f621f3-60b7-4f06-8cf0-f98f657e96ac",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Delete Item",
+            "url": "http://localhost:3003/menu/delete_item?id=8",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-11-19T11:20:53.749Z",
+            "modified": "2023-11-22T06:03:44.892Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "id",
+                    "value": "8",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "a2a464b3-777b-4dc8-b08b-761347daee2e",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Set Status",
+            "url": "http://localhost:3003/status/set?status=online&restaurant_id=7",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-11-19T12:18:12.236Z",
+            "modified": "2023-11-19T13:42:03.499Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "status",
+                    "value": "online",
+                    "isPath": false
+                },
+                {
+                    "name": "restaurant_id",
+                    "value": "7",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "6c24c7c4-2ab4-4af2-a85c-53e365f46ee5",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: Browse Restaurants",
+            "url": "http://localhost:3002/browse",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-11-19T13:37:53.800Z",
+            "modified": "2023-11-22T09:07:34.740Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "25e18f73-0ad4-4d2b-960e-a768337e536f",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Admin: Add Restaurant",
+            "url": "http://localhost:3001/admin/add_restaurant",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-11-19T14:04:39.931Z",
+            "modified": "2023-11-21T18:52:49.950Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Tera Tawa Pizza\",\n  \"city\": \"mumbai\",\n  \"password\": \"password\",\n  \"email\": \"hi@gool.com\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ee702e1d-6b90-4a6d-a2f0-538a89aad853",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: Sign Up",
+            "url": "http://localhost:3002/auth/signup",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-11-21T12:33:22.868Z",
+            "modified": "2023-11-21T12:38:57.707Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"shreyans@gmail.com\",\n  \"name\": \"Shreyans\",\n  \"city\": \"Mumbai\",\n  \"password\": \"abcd\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "cb61e9cb-0f35-42ee-a8ab-571279a35336",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: login",
+            "url": "http://localhost:3002/auth/login",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-11-21T13:15:09.621Z",
+            "modified": "2023-11-21T13:15:47.978Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"shreyans@gmail.com\",\n  \"password\": \"abcd\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "823e1995-4c1f-47e0-8bc9-8b375fdfc85f",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: protected",
+            "url": "http://localhost:3002/auth/protected",
+            "method": "GET",
+            "sortNum": 100000,
+            "created": "2023-11-21T13:19:28.782Z",
+            "modified": "2023-11-21T13:20:15.486Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e8ba432a-46b3-40ca-ad6b-294ed63764c9",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: Logout",
+            "url": "http://localhost:3002/auth/logout",
+            "method": "GET",
+            "sortNum": 110000,
+            "created": "2023-11-21T13:22:25.517Z",
+            "modified": "2023-11-21T13:22:37.201Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "9f894aa4-ae4e-4b7b-a039-635f89af5984",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Login",
+            "url": "http://localhost:3003/auth/login",
+            "method": "POST",
+            "sortNum": 140000,
+            "created": "2023-11-22T05:40:56.437Z",
+            "modified": "2023-11-23T10:56:22.545Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"hi@gool.com\",\n  \"password\": \"password\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d74e2726-4fe4-4be4-81d5-78415421a8c3",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "Restaurant: Logout",
+            "url": "http://localhost:3003/auth/logout",
+            "method": "GET",
+            "sortNum": 150000,
+            "created": "2023-11-22T06:06:30.089Z",
+            "modified": "2023-11-22T06:06:43.650Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "882c157b-068c-4a8a-95cc-49c87c725fb3",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: Add to cart",
+            "url": "http://localhost:3002/order/add_to_cart",
+            "method": "POST",
+            "sortNum": 160000,
+            "created": "2023-11-22T08:46:07.935Z",
+            "modified": "2023-11-23T11:05:16.285Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"item_id\": 7\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "3843b0ee-84a6-40c4-a1e9-775a59f0799f",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: Browse Restaurant Menu",
+            "url": "http://localhost:3002/browse?restaurant_id=39",
+            "method": "GET",
+            "sortNum": 170000,
+            "created": "2023-11-22T09:07:48.590Z",
+            "modified": "2023-11-23T10:57:25.122Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "restaurant_id",
+                    "value": "39",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "331767b3-5df5-4770-8b37-00f0a786abf6",
+            "colId": "6585f906-3af7-473c-a099-919d6e7940aa",
+            "containerId": "",
+            "name": "User: View Cart",
+            "url": "http://localhost:3002/order/cart",
+            "method": "GET",
+            "sortNum": 180000,
+            "created": "2023-11-22T10:29:01.868Z",
+            "modified": "2023-11-22T10:29:20.536Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
