@@ -16,7 +16,7 @@
     - Remove restaurant
 ### Requirements
 1. Node.js v16.13.1 and above
-2. Postgres 15
+2. PostgreSQL
 
 ### Steps to get the backend running
 1. Clone this git repository to your machine
