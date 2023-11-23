@@ -36,7 +36,7 @@ You can generate secret keys in this manner, [here](https://stackoverflow.com/qu
 ```bash
 npm run build
 ```
-This will build the project from source. You will be prompted to enter a migration name, you can add any name, I chose "0_init."
+This will build the project from source. You will be prompted to enter a migration name, you can add any name, I chose "0_init." A few errors wiil popup when the source code is compiled, just ignore them as they are mainly 'type' errors or 'unused-variable' errors.
 
 4. Now, run
 ```
