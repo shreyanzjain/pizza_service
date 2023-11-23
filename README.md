@@ -43,7 +43,7 @@ This will build the project from source. You will be prompted to enter a migrati
 npm run prod
 ```
 
-If all goes well you should see this in your terminal.
+If all goes well you should see something like this in your terminal.
 ```bash
 [0] Admin. Listening on http://localhost:3001
 [2] Restaurant. Listening on http://localhost:3003
