@@ -1,9 +1,10 @@
 import express from "express";
-import cookieParser from 'cookie-parser';
-import 'dotenv/config';
+import cookieParser from "cookie-parser";
+import "dotenv/config";
 
 import browse_routes from "./routes/browse_routes";
-import auth_routes from './routes/auth';
+import auth_routes from "./routes/auth";
+import order_routes from "./routes/order";
 
 const app = express();
 const port = 3002;
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/browse", browse_routes);
 app.use("/auth", auth_routes);
+app.use("/order", order_routes);
 
 app.listen(port, () => {
   console.log(`User. Listening on http://localhost:${port}`);

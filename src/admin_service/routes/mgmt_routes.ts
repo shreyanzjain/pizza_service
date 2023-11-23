@@ -9,8 +9,9 @@ router.post("/add_restaurant", jsonParser, async (req, res) => {
   const name = req.body.name;
   const city = req.body.city;
   const password = req.body.password;
+  const email = req.body.email;
 
-  const response = await add_restaurant(name, city, password);
+  const response = await add_restaurant(name, city, email, password);
   res.status(parseInt(response[0])).send(response[1]);
 });
 

@@ -3,11 +3,18 @@ import bodyParser from "body-parser";
 const jsonParser = bodyParser.json();
 const router = express.Router();
 
+
 import { add_item, get_menu, update_item, remove_item } from "../methods/menu";
 import authorization from "../middleware/auth";
 
 router.get("/get_menu", authorization, async (req, res) => {
   const restaurant_id: number = req.restaurant_id;
+  const response = await get_menu(restaurant_id);
+  return res.status(parseInt(String(response[0]))).send(response[1]);
+});
+
+router.get("/public", jsonParser, async(req, res)=> {
+  const restaurant_id = typeof req.query.restaurant_id === "string" ? parseInt(req.query.restaurant_id) : null;
   const response = await get_menu(restaurant_id);
   return res.status(parseInt(String(response[0]))).send(response[1]);
 });
