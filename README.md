@@ -16,6 +16,7 @@
     - Remove restaurant
 ### Requirements
 1. Node.js v16.13.1 and above
+2. Postgres 15
 
 ### Steps to get the backend running
 1. Clone this git repository to your machine
@@ -29,5 +30,24 @@ ADMIN_SECRET_KEY = "YOUR_ADMIN_SECRET_KEY"
 RESTAURANT_SECRET_KEY = "YOUR_RESTAURANT_SECRET_KEY" 
 ```
 
-You can generate secret keys in this manner, [here](https://stackoverflow.com/questions/52996555/generate-a-sufficient-secret-for-jwt-nodejs-lambda)
+You can generate secret keys in this manner, [here](https://stackoverflow.com/questions/52996555/generate-a-sufficient-secret-for-jwt-nodejs-lambda).
 
+3. Run the command
+```bash
+npm run build
+```
+This will build the project from source. You will be prompted to enter a migration name, you can add any name, I chose "0_init."
+
+4. Now, run
+```
+npm run prod
+```
+
+If all goes well you should see this in your terminal.
+```bash
+[0] Admin. Listening on http://localhost:3001
+[2] Restaurant. Listening on http://localhost:3003
+[1] User. Listening on http://localhost:3002
+```
+
+5. You can find the documented apis as postman.json, you can import this file into your postman account.

@@ -1,0 +1,405 @@
+{
+    "info": {
+        "_postman_id": "1170b3d8-c628-434f-9c58-63bbf7dd7fca",
+        "name": "pizza_service",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Restaurant: Add Item",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3003/menu/add_item",
+                    "path": [
+                        "menu",
+                        "add_item"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"name\": \"Margherita Small\",\n  \"price\": 200\n}"
+                }
+            }
+        },
+        {
+            "name": "Restaurant: Get Menu",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3003/menu/get_menu",
+                    "path": [
+                        "menu",
+                        "get_menu"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                }
+            }
+        },
+        {
+            "name": "Restaurant: Update Item",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:3003/menu/update_item",
+                    "path": [
+                        "menu",
+                        "update_item"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"id\": 6,\n  \"price\": 1550\n}"
+                }
+            }
+        },
+        {
+            "name": "Restaurant: Delete Item",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:3003/menu/delete_item?id=8",
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "8"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "menu",
+                        "delete_item"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                }
+            }
+        },
+        {
+            "name": "Restaurant: Set Status",
+            "request": {
+                "method": "PUT",
+                "url": {
+                    "raw": "http://localhost:3003/status/set?status=ONLINE",
+                    "query": [
+                        {
+                            "key": "status",
+                            "value": "ONLINE"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "status",
+                        "set"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                }
+            }
+        },
+        {
+            "name": "User: Browse Restaurants",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3002/browse",
+                    "path": [
+                        "browse"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                }
+            }
+        },
+        {
+            "name": "Admin: Add Restaurant",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3001/admin/add_restaurant",
+                    "path": [
+                        "admin",
+                        "add_restaurant"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"name\": \"Mera Tawa Pizza\",\n  \"city\": \"mumbai\",\n  \"password\": \"password\",\n  \"email\": \"hi@bool.com\",\n  \"status\": \"ONLINE\"\n}"
+                }
+            }
+        },
+        {
+            "name": "User: Sign Up",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3002/auth/signup",
+                    "path": [
+                        "auth",
+                        "signup"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\": \"shreyans@gmail.com\",\n  \"name\": \"Shreyans\",\n  \"city\": \"Mumbai\",\n  \"password\": \"abcd\"\n}"
+                }
+            }
+        },
+        {
+            "name": "User: login",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3002/auth/login",
+                    "path": [
+                        "auth",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\": \"shreyans@gmail.com\",\n  \"password\": \"abcd\"\n}"
+                }
+            }
+        },
+        {
+            "name": "User: protected",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3002/auth/protected",
+                    "path": [
+                        "auth",
+                        "protected"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                }
+            }
+        },
+        {
+            "name": "User: Logout",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3002/auth/logout",
+                    "path": [
+                        "auth",
+                        "logout"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                }
+            }
+        },
+        {
+            "name": "Restaurant: Login",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3003/auth/login",
+                    "path": [
+                        "auth",
+                        "login"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"email\": \"hi@gool.com\",\n  \"password\": \"password\"\n}"
+                }
+            }
+        },
+        {
+            "name": "Restaurant: Logout",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3003/auth/logout",
+                    "path": [
+                        "auth",
+                        "logout"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3003"
+                }
+            }
+        },
+        {
+            "name": "User: Add to cart",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3002/order/add_to_cart",
+                    "path": [
+                        "order",
+                        "add_to_cart"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"item_id\": 7\n}"
+                }
+            }
+        },
+        {
+            "name": "User: Browse Restaurant Menu",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3002/browse?restaurant_id=39",
+                    "query": [
+                        {
+                            "key": "restaurant_id",
+                            "value": "39"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "browse"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                }
+            }
+        },
+        {
+            "name": "User: View Cart",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3002/order/cart",
+                    "path": [
+                        "order",
+                        "cart"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3002"
+                }
+            }
+        },
+        {
+            "name": "Admin: Delete Restaurant",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:3001/admin/delete_restaurant?id=1",
+                    "query": [
+                        {
+                            "key": "id",
+                            "value": "1"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "admin",
+                        "delete_restaurant"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001"
+                }
+            }
+        }
+    ]
+}
