@@ -78,4 +78,6 @@ model Cart {
 
   customer Customer @relation(fields: [customer_id], references: [id], onDelete: Cascade)
   customer_id Int
+
+  @@map("cart")
 }
