@@ -22,12 +22,32 @@ enum OrderStatus {
   DELIVERED
 }
 
+enum EntityRole {
+  ADMIN
+  CUSTOMER
+  RESTAURANT
+}
+
+model Entity {
+  id Int @id @unique @default(autoincrement())
+  email String @db.VarChar(80) @unique
+  role EntityRole
+  hashed_password String @db.VarChar(60)
+
+  customer_profile Customer?
+  restaurant_profile Restaurant?
+  admin_profile Admin?
+
+  @@map("entity")
+}
+
 model Customer {
   id Int @id @unique @default(autoincrement())
   name String @db.VarChar(64)
   city String @db.VarChar(64)
-  email String @db.VarChar(80) @unique
-  hashed_password String @db.VarChar(60)
+  
+  entity Entity @relation(fields: [entity_id], references: [id], onDelete: Cascade)
+  entity_id Int @unique
 
   cart Cart[]
   @@map("customers") 
@@ -37,9 +57,10 @@ model Restaurant {
   id Int @id @unique @default(autoincrement())
   name String @db.VarChar(64)
   city String @db.VarChar(64)
-  email String @db.VarChar(80) @unique
   status Status @default(OFFLINE)
-  hashed_password String @db.VarChar(60)
+
+  entity Entity @relation(fields: [entity_id], references: [id], onDelete: Cascade)
+  entity_id Int @unique
 
   menu Menu[]
   cart Cart[]
@@ -48,8 +69,9 @@ model Restaurant {
 
 model Admin {
   id Int @id @unique @default(autoincrement())
-  username String @db.VarChar(64) @unique
-  hashed_password String @db.VarChar(60)
+  
+  entity Entity @relation(fields: [entity_id], references: [id], onDelete: Cascade)
+  entity_id Int @unique
 
   @@map("admins")
 }
