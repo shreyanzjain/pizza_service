@@ -18,16 +18,20 @@ router.post("/login", jsonParser, async (req, res) => {
         .send("Length of email has to be between 1 - 64 characters.");
     }
     const response = await login(email, password);
-    const token = jwt.sign(response, process.env.RESTAURANT_SECRET_KEY, {
-      expiresIn: "7d",
-    });
+    if (typeof response[1] === "object" ) {
+      const token = jwt.sign(response[1], process.env.ENTITY_SECRET, {
+        expiresIn: "7d",
+      });
 
-    return res
-      .status(200)
-      .cookie("auth_token", token, {
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-      })
-      .send("Logged In.");
+      return res
+        .status(parseInt(typeof response[0] === 'string'? response[0] : null))
+        .cookie("auth_token", token, {
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+        })
+        .send("Logged In.");
+    } else {
+      return res.status(parseInt(typeof response[0] === 'string'? response[0] : null)).send(response[1]);
+    }
   } else {
     return res
       .status(400)
@@ -35,8 +39,8 @@ router.post("/login", jsonParser, async (req, res) => {
   }
 });
 
-router.get("/logout", authorization, (req, res)=> {
+router.get("/logout", authorization, (req, res) => {
   res.clearCookie("auth_token").status(200).send("Successfully logged out!");
-})
+});
 
 export default router;

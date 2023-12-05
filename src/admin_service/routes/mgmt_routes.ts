@@ -6,12 +6,10 @@ import bodyParser from "body-parser";
 const jsonParser = bodyParser.json();
 
 router.post("/add_restaurant", jsonParser, async (req, res) => {
-  const name = req.body.name;
-  const city = req.body.city;
-  const password = req.body.password;
   const email = req.body.email;
+  const password = req.body.password;
 
-  const response = await add_restaurant(name, city, email, password);
+  const response = await add_restaurant(email, password);
   res.status(parseInt(response[0])).send(response[1]);
 });
 

@@ -4,8 +4,9 @@ const authorization = (req, res, next) => {
   const token = req.cookies.auth_token;
   if (token) {
     try {
-      const { id } = jwt.verify(token, process.env.RESTAURANT_SECRET_KEY);
-      req.restaurant_id = id;
+      const { id, role } = jwt.verify(token, process.env.ENTITY_SECRET);
+      req.entity_id = id;
+      req.role = role;
       next();
     } catch {
       return res
