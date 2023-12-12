@@ -7,6 +7,9 @@ const authorization = (req, res, next) => {
       const { id, role } = jwt.verify(token, process.env.ENTITY_SECRET);
       req.entity_id = id;
       req.role = role;
+      if (role !== "RESTAURANT") {
+        throw new Error("Unauthorized.");
+      }
       next();
     } catch {
       return res

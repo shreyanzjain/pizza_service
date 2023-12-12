@@ -10,14 +10,11 @@ router.put("/set", authorization, async (req, res) => {
       ? req.query.status.toUpperCase()
       : null;
 
-  const restaurant_id: number = req.restaurant_id;
+  const entity_id: number = req.entity_id;
 
-  if (status && restaurant_id) {
+  if (status && entity_id) {
     if (status == "ONLINE" || status == "OFFLINE") {
-      const response = await set_status(
-        status == "ONLINE" ? 1 : 0,
-        restaurant_id
-      );
+      const response = await set_status(status == "ONLINE" ? 1 : 0, entity_id);
       return res.status(parseInt(response[0])).send(response[1]);
     } else {
       return res
@@ -27,9 +24,7 @@ router.put("/set", authorization, async (req, res) => {
   } else {
     return res
       .status(400)
-      .send(
-        "Please put status (OFFLINE or ONLINE) as a query parameter"
-      );
+      .send("Please put status (OFFLINE or ONLINE) as a query parameter");
   }
 });
 

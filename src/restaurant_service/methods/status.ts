@@ -1,10 +1,10 @@
 // Update restaurant status
 import prisma from "../model/init";
 
-async function set_status(status: number, restaurant_id: number) {
+async function set_status(status: number, entity_id: number) {
   const updated_restaurant = await prisma.restaurant.update({
     where: {
-      id: restaurant_id,
+      entity_id: entity_id,
     },
     data: {
       status: status == 1 ? "ONLINE" : "OFFLINE",
