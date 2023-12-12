@@ -3,24 +3,37 @@
 // 2. View menu items, per restaurant
 import prisma from "../model/init";
 
-async function view_restaurants(city: string, page?: number) {
-  const restaurants = await prisma.restaurant.findMany({
-    take: 10,
-    skip: page ? page * 10 : 0, // if page is provided show results on page, else beginning
-    select: {
-      id: true,
-      name: true,
-    },
+async function view_restaurants(entity_id: number, page?: number) {
+  const user = await prisma.entity.findFirst({
     where: {
-      city: {
-        equals: city,
-        mode: 'insensitive'
-      },
-      status: "ONLINE",
+      id: entity_id,
+    },
+    include: {
+      customer_profile: true,
     },
   });
+  if (user.customer_profile) {
+    const restaurants = await prisma.restaurant.findMany({
+      take: 10,
+      skip: page ? page * 10 : 0, // if page is provided show results on page, else beginning
+      select: {
+        id: true,
+        name: true,
+      },
+      where: {
+        city: {
+          equals: user.customer_profile.city,
+          mode: "insensitive",
+        },
+        status: "ONLINE",
+      },
+    });
+    return restaurants;
+  } else  {
+    return ["400", "Please set up your profile."]
+  }
 
-  return restaurants;
+  
 }
 
 export default view_restaurants;

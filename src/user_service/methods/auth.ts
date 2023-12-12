@@ -3,29 +3,36 @@ import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 10;
 
-async function signup(
+async function register(
   email: string,
+  password: string,
   name: string,
-  city: string,
-  password: string
+  city: string
 ) {
-  const user = await prisma.customer.findFirst({
+  const user = await prisma.entity.findFirst({
     where: {
       email: email,
     },
   });
   // if user exists
   if (user) {
-    return ["400", `User with email ${email} exists.`];
+    return ["400", `Email already taken.`];
   }
 
   const hashed_password = await bcrypt.hash(password, SALT_ROUNDS);
-  const new_user = await prisma.customer.create({
+  const new_user = await prisma.entity.create({
     data: {
       email: email,
+      hashed_password: hashed_password,
+      role: "CUSTOMER",
+    },
+  });
+
+  await prisma.customer.create({
+    data: {
       name: name,
       city: city,
-      hashed_password: hashed_password,
+      entity_id: new_user.id,
     },
   });
 
@@ -33,7 +40,7 @@ async function signup(
 }
 
 async function login(email: string, password: string) {
-  const user = await prisma.customer.findFirst({
+  const user = await prisma.entity.findFirst({
     where: {
       email: email,
     },
@@ -45,7 +52,7 @@ async function login(email: string, password: string) {
       user.hashed_password
     );
     if (is_valid_password) {
-      return { id: user.id, city: user.city };
+      return { entity_id: user.id, role: user.role };
     } else {
       return `Invalid password!`;
     }
@@ -54,4 +61,4 @@ async function login(email: string, password: string) {
   }
 }
 
-export { signup, login };
+export { register, login };

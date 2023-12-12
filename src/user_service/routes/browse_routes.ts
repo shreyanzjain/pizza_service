@@ -27,7 +27,7 @@ router.get("/", authorization, async (req, res) => {
       return res.status(404).send("No such restaurant, or the restaurant is yet to add items to its menu.");
     }
   }
-  const restaurants = await view_restaurants(req.city, page);
+  const restaurants = await view_restaurants(req.entity_id, page);
   return res.status(200).send(restaurants);
 });
 

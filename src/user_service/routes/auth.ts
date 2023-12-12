@@ -7,16 +7,16 @@ import bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 import jwt = require("jsonwebtoken");
 
-import { signup, login } from "../methods/auth";
+import { register, login } from "../methods/auth";
 import authorization from "../middleware/auth";
 
-router.post("/signup", jsonParser, async (req, res) => {
-  const email = req.body.email;
-  const name = req.body.name;
-  const city = req.body.city;
-  const password = req.body.password;
+router.post("/register", jsonParser, async (req, res) => {
+  const email: string = req.body.email;
+  const password: string = req.body.password;
+  const name: string = req.body.name;
+  const city: string = req.body.city;
 
-  if (!(email && name && city && password)) {
+  if (!(email && password && name && city)) {
     return res
       .status(400)
       .send(
@@ -24,7 +24,7 @@ router.post("/signup", jsonParser, async (req, res) => {
       );
   }
 
-  const response = await signup(email, name, city, password);
+  const response = await register(email, password, name, city);
   return res.status(parseInt(response[0])).send(response[1]);
 });
 
@@ -37,7 +37,7 @@ router.post("/login", jsonParser, async (req, res) => {
 
   const response = await login(email, password);
   if (typeof response === "object") {
-    const token = jwt.sign(response, process.env.USER_SECRET_KEY, {
+    const token = jwt.sign(response, process.env.ENTITY_SECRET, {
       expiresIn: "7d",
     });
     return res
@@ -54,7 +54,7 @@ router.post("/login", jsonParser, async (req, res) => {
 });
 
 router.get("/protected", authorization, (req, res) => {
-  res.status(200).send({ customer_id: req.customer_id, city: req.city });
+  res.status(200).send({ entity_id: req.entity_id, role: req.role });
 });
 
 router.get("/logout", authorization, (req, res) => {
