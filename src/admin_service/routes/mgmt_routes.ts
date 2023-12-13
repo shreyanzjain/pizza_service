@@ -4,8 +4,9 @@ const router = express.Router();
 
 import bodyParser from "body-parser";
 const jsonParser = bodyParser.json();
+import authorization from "../middleware/auth";
 
-router.post("/add_restaurant", jsonParser, async (req, res) => {
+router.post("/add_restaurant", authorization, jsonParser, async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
@@ -13,7 +14,7 @@ router.post("/add_restaurant", jsonParser, async (req, res) => {
   res.status(parseInt(response[0])).send(response[1]);
 });
 
-router.delete("/delete_restaurant", async (req, res) => {
+router.delete("/delete_restaurant", authorization, async (req, res) => {
   const id = typeof req.query.id === "string" ? parseInt(req.query.id) : null;
   const response = await del_restaurant(id);
 
