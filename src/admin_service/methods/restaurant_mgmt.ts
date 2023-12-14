@@ -10,8 +10,18 @@ async function add_restaurant(email: string, password: string) {
     return ["400", "Length of email must be between 1 - 64 characters."];
   }
 
-  if (password.length < 1) {
-    return ["400", "Please enter a password!"];
+  if (password.length < 8 || password.length > 25) {
+    return ["400", "Please enter a password of length 8 - 25!"];
+  }
+
+  const enity = await prisma.entity.findFirst({
+    where: {
+      email: email,
+    },
+  });
+
+  if (enity) {
+    return ["400", "Email taken!"];
   }
 
   await prisma.entity.create({
@@ -26,13 +36,24 @@ async function add_restaurant(email: string, password: string) {
 }
 
 async function del_restaurant(id: number) {
-  if (id == null) {
+  if (!id) {
     return ["400", "Please specify the id parameter"];
   }
-  const deleted_restaurant = await prisma.entity.delete({
+
+  const restaurant = await prisma.entity.findFirst({
     where: {
       id: id,
-      role: "RESTAURANT"
+      role: "RESTAURANT",
+    },
+  });
+
+  if (!restaurant) {
+    return ["400", "No such restaurant"];
+  }
+
+  const deleted_restaurant = await prisma.entity.delete({
+    where: {
+      id: restaurant.id,
     },
   });
 

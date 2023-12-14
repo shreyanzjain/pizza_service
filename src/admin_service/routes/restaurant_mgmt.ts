@@ -10,8 +10,12 @@ router.post("/add_restaurant", authorization, jsonParser, async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
-  const response = await add_restaurant(email, password);
-  res.status(parseInt(response[0])).send(response[1]);
+  if (email && password) {
+    const response = await add_restaurant(email, password);
+    res.status(parseInt(response[0])).send(response[1]);
+  } else {
+    res.status(400).send("email, password not in req body");
+  }
 });
 
 router.delete("/delete_restaurant", authorization, async (req, res) => {
